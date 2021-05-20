@@ -1,13 +1,11 @@
-import os
-import sys
-
 import requests
 
 import config
 
 # https://moodle.cca.edu/webservice/rest/server.php?wstoken=...&wsfunction=core_course_get_courses&moodlewsrestformat=json
 
-def get_mdl_course_id():
+
+def get_mdl_courses():
     """ return the complete list of courses in Moodle
 
     returns: a list of course objects
@@ -48,6 +46,7 @@ def get_mdl_course_id():
     """
     return "Error: {}".format(data)
 
+
 # CLI use: pass shortname on the command line
 if __name__ == "__main__":
-    get_mdl_course_id()
+    get_mdl_courses()

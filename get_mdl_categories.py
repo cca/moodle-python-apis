@@ -1,4 +1,3 @@
-import os
 import sys
 
 import requests
@@ -31,7 +30,7 @@ def get_mdl_categories(filter):
     service = 'core_course_get_categories'
     format = 'json'
     params = {
-    # found at https://moodle.cca.edu/admin/settings.php?section=webservicetokens
+        # see https://moodle.cca.edu/admin/settings.php?section=webservicetokens
         'wstoken': config.token,
         'wsfunction': service,
         'moodlewsrestformat': format,
@@ -67,6 +66,7 @@ def get_mdl_categories(filter):
 
     return data
 
+
 # CLI use: pass semester category name on the command line
 if __name__ == "__main__":
-    print(get_mdl_categories({ "name": sys.argv[1] }))
+    print(get_mdl_categories({"name": sys.argv[1]}))
