@@ -1,13 +1,27 @@
-import os
-import sys
+"""Get Moodle course data from API.
 
+Usage:
+    get_mdl_course.py [--json] <shortname>
+
+Options:
+  <shortname>   a CCA section code formatted like {department code}-
+                {course number}-{section number}-{semester code} e.g.
+                ANIMA-1000-1-2021SP.
+  -h --help     Show this screen.
+  --version     Show version.
+  --json        JSON output.
+"""
+import json
+
+from docopt import docopt
 import requests
 
 import config
 
 # https://moodle.cca.edu/webservice/rest/server.php?wstoken=...&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json&field=shortname&value=EXCHG-3740-1-2019FA
 
-def get_mdl_course_id(shortname):
+
+def get_mdl_course(shortname):
     """ find out Moodle's internal ID for a course (so you can link to it)
 
     returns: a string composed of numbers e.g. "8452"
@@ -50,7 +64,7 @@ def get_mdl_course_id(shortname):
     if type(courses) == list:
         if len(courses) > 0:
             # theoretically this is always a single-entry array
-            return str(courses[0]["id"])
+            return courses[0]
         """
         If no course matches the shortname, there's no "exception" in the response
         and we receive a pair of empty arrays:
@@ -82,6 +96,14 @@ def get_mdl_course_id(shortname):
         return "Error: {}".format(data["message"])
     return data
 
+
+def main(arguments):
+    if arguments.get('--json'):
+        return print(json.dumps(get_mdl_course(arguments['<shortname>'])))
+
+    return print(get_mdl_course(arguments['<shortname>']))
+
+
 # CLI use: pass shortname on the command line
 if __name__ == "__main__":
-    print(get_mdl_course_id(sys.argv[1]))
+    main(docopt(__doc__, version='get_mdl_course 1.0'))
