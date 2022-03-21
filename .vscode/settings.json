@@ -1,3 +1,4 @@
 {
-    "python.defaultInterpreterPath": "/Users/ephetteplace/.local/share/virtualenvs/python-apis-NEFA5sCB/bin/python"
+    "python.defaultInterpreterPath": "/Users/ephetteplace/.local/share/virtualenvs/python-apis-NEFA5sCB/bin/python",
+    "python.formatting.provider": "black"
 }
