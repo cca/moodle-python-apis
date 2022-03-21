@@ -1,5 +1,17 @@
-import sys
+"""Get Moodle category data from its REST API.
+Returns JSON data of the named category and all its children.
 
+Usage:
+    get_mdl_course.py <name>
+
+Options:
+  name          Name of the category, e.g., "2022SP
+  -h --help     Show this screen.
+  --version     Show version.
+"""
+import json
+
+from docopt import docopt
 import requests
 
 import config
@@ -69,4 +81,5 @@ def get_mdl_categories(filter):
 
 # CLI use: pass semester category name on the command line
 if __name__ == "__main__":
-    print(get_mdl_categories({"name": sys.argv[1]}))
+    arguments = docopt(__doc__, version='get_mdl_categories 1.0')
+    print(json.dumps(get_mdl_categories({"name": arguments.get('<name>')})))
