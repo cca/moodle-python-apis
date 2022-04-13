@@ -2,7 +2,7 @@
 Returns JSON data of the named category and all its children.
 
 Usage:
-    get_mdl_course.py <name>
+    get_mdl_categories.py <name>
 
 Options:
   name          Name of the category, e.g., "2022SP

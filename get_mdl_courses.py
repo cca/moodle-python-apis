@@ -47,6 +47,5 @@ def get_mdl_courses():
     return "Error: {}".format(data)
 
 
-# CLI use: pass shortname on the command line
 if __name__ == "__main__":
     get_mdl_courses()
