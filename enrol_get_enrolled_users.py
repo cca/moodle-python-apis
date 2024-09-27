@@ -1,6 +1,18 @@
+"""Get users enrolled in a Moodle course.
+
+Usage:
+    enrol_get_enrolled_users.py <courseid>
+
+Options:
+  <courseid>    numberic ID of the course in Moodle
+  -h --help     Show this screen.
+  --version     Show version.
+"""
+
 import json
 import sys
 
+from docopt import docopt
 import requests
 
 import config
@@ -29,4 +41,5 @@ def get_enrolled_users(courseid):
 
 
 if __name__ == "__main__":
-    print(json.dumps(get_enrolled_users(sys.argv[1]), indent=4, sort_keys=True))
+    args = docopt(__doc__, version="enrol_get_enrolled_users 1.0")
+    print(json.dumps(get_enrolled_users(args["<courseid>"]), indent=4, sort_keys=True))

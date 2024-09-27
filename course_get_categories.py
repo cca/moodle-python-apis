@@ -2,13 +2,14 @@
 Returns JSON data of the named category and all its children.
 
 Usage:
-    get_mdl_categories.py <name>
+    course_get_categories.py <name>
 
 Options:
   name          Name of the category, e.g., "2022SP
   -h --help     Show this screen.
   --version     Show version.
 """
+
 import json
 
 from docopt import docopt
@@ -20,7 +21,7 @@ import config
 
 
 def get_mdl_categories(filter):
-    """ obtain a list of JSON representations of Moodle course categories
+    """obtain a list of JSON representations of Moodle course categories
 
     returns an array of category dicts (see their fields below)
 
@@ -39,13 +40,13 @@ def get_mdl_categories(filter):
     """
     # constants
     url = config.url
-    service = 'core_course_get_categories'
-    format = 'json'
+    service = "core_course_get_categories"
+    format = "json"
     params = {
         # see https://moodle.cca.edu/admin/settings.php?section=webservicetokens
-        'wstoken': config.token,
-        'wsfunction': service,
-        'moodlewsrestformat': format,
+        "wstoken": config.token,
+        "wsfunction": service,
+        "moodlewsrestformat": format,
     }
 
     # construct criteria in PHP array query string format
@@ -62,11 +63,11 @@ def get_mdl_categories(filter):
     if data is not None:
         if type(data) == list and len(data) == 0:
             # not an error but didn't get any categories
-            print('No matching categories were found; check your query filter.')
+            print("No matching categories were found; check your query filter.")
             return data
 
         elif type(data) == dict:
-            if data.get('exception') or data.get('moodle_exception'):
+            if data.get("exception") or data.get("moodle_exception"):
                 """
                 Moodle sends HTTP 200 responses with error information in JSON, example:
                 { 'errorcode': 'criteriaerror', 'debuginfo':
@@ -81,5 +82,5 @@ def get_mdl_categories(filter):
 
 # CLI use: pass semester category name on the command line
 if __name__ == "__main__":
-    arguments = docopt(__doc__, version='get_mdl_categories 1.0')
-    print(json.dumps(get_mdl_categories({"name": arguments.get('<name>')})))
+    arguments = docopt(__doc__, version="course_get_categories 1.0")
+    print(json.dumps(get_mdl_categories({"name": arguments.get("<name>")})))

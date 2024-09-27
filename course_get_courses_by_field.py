@@ -1,7 +1,7 @@
 """Get Moodle course data from API.
 
 Usage:
-    get_mdl_course.py [--json] <shortname>
+    course_get_courses_by_field.py [--json] <shortname>
 
 Options:
   <shortname>   a CCA section code formatted like {department code}-
@@ -11,6 +11,7 @@ Options:
   --version     Show version.
   --json        JSON output.
 """
+
 import json
 
 from docopt import docopt
@@ -22,7 +23,7 @@ import config
 
 
 def get_mdl_course(shortname):
-    """ find out Moodle's internal ID for a course (so you can link to it)
+    """find out Moodle's internal ID for a course (so you can link to it)
 
     returns: a string composed of numbers e.g. "8452"
 
@@ -48,18 +49,18 @@ def get_mdl_course(shortname):
     url = config.url
     params = {
         # found at https://moodle.cca.edu/admin/settings.php?section=webservicetokens
-        'wstoken': config.token,
-        'wsfunction': 'core_course_get_courses_by_field',
-        'moodlewsrestformat': 'json',
+        "wstoken": config.token,
+        "wsfunction": "core_course_get_courses_by_field",
+        "moodlewsrestformat": "json",
         # theoretically we can search using ID, a list of IDs, idnumber,
         # or category but in reality shortname is only viable option
-        'field': 'shortname',
-        'value': shortname,
+        "field": "shortname",
+        "value": shortname,
     }
 
     response = requests.get(url, params=params)
     data = response.json()
-    courses = data.get('courses')
+    courses = data.get("courses")
 
     if type(courses) == list:
         if len(courses) > 0:
@@ -73,7 +74,7 @@ def get_mdl_course(shortname):
         For now, we return empty string but Portal may want some specific
         handling for this situation (which will definitely occur).
         """
-        return ''
+        return ""
     else:
         """
         Moodle sends an HTTP 200 response back on errors with details in the JSON.
@@ -98,12 +99,12 @@ def get_mdl_course(shortname):
 
 
 def main(arguments):
-    if arguments.get('--json'):
-        return print(json.dumps(get_mdl_course(arguments['<shortname>'])))
+    if arguments.get("--json"):
+        return print(json.dumps(get_mdl_course(arguments["<shortname>"])))
 
-    return print(get_mdl_course(arguments['<shortname>']))
+    return print(get_mdl_course(arguments["<shortname>"]))
 
 
 # CLI use: pass shortname on the command line
 if __name__ == "__main__":
-    main(docopt(__doc__, version='get_mdl_course 1.0'))
+    main(docopt(__doc__, version="course_get_courses_by_field 1.0"))
