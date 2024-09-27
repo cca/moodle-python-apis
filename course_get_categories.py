@@ -82,5 +82,5 @@ def get_mdl_categories(filter):
 
 # CLI use: pass semester category name on the command line
 if __name__ == "__main__":
-    arguments = docopt(__doc__, version="course_get_categories 1.0")
+    arguments = docopt(__doc__, version="course_get_categories 1.0")  # type: ignore
     print(json.dumps(get_mdl_categories({"name": arguments.get("<name>")})))

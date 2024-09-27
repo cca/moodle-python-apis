@@ -41,5 +41,5 @@ def get_enrolled_users(courseid):
 
 
 if __name__ == "__main__":
-    args = docopt(__doc__, version="enrol_get_enrolled_users 1.0")
+    args = docopt(__doc__, version="enrol_get_enrolled_users 1.0")  # type: ignore
     print(json.dumps(get_enrolled_users(args["<courseid>"]), indent=4, sort_keys=True))

@@ -107,4 +107,4 @@ def main(arguments):
 
 # CLI use: pass shortname on the command line
 if __name__ == "__main__":
-    main(docopt(__doc__, version="course_get_courses_by_field 1.0"))
+    main(docopt(__doc__, version="course_get_courses_by_field 1.0"))  # type: ignore
