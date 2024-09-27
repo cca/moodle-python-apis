@@ -13,3 +13,7 @@ This script was an example provided to the Portal team during Learning Hub devel
 ## get_mdl_courses
 
 Returns _all_ the Moodle courses using the `core_course_get_courses` wsfunction. This is currently (as of August 2020) the method that the Portal uses to pull Moodle data, which it matches to its course data. So we need to ensure this function works with whatever web services user/token Portal uses.
+
+## enrol_get_enrolled_users
+
+Given a course ID, returns a list of users enrolled in that course using the `core_enrol_get_enrolled_users` function.
