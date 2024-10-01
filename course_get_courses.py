@@ -6,16 +6,16 @@ import config
 
 
 def get_mdl_courses():
-    """ return the complete list of courses in Moodle
+    """return the complete list of courses in Moodle
 
     returns: a list of course objects
     """
     url = config.url
     params = {
         # found at https://moodle.cca.edu/admin/settings.php?section=webservicetokens
-        'wstoken': config.token,
-        'wsfunction': 'core_course_get_courses',
-        'moodlewsrestformat': 'json'
+        "wstoken": config.token,
+        "wsfunction": "core_course_get_courses",
+        "moodlewsrestformat": "json",
     }
 
     response = requests.get(url, params=params)
