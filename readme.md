@@ -1,6 +1,12 @@
 # Moodle API Tools
 
-Example scripts for accessing different portions of the Moodle REST APIs. The Moodle APIs are comprehensive but tricky to use. These scripts are illustrative and not intended for production use, though similar code is running in other CCA apps. To run them, obtain a [Web Services token](https://moodle.cca.edu/admin/webservice/tokens.php) for a Service with the appropriate API permissions, then save that token in a config.py file (see example.config.py for details) in the root of this project.
+Example scripts for accessing different portions of the Moodle REST APIs. The Moodle APIs are comprehensive but tricky to use. These scripts are illustrative and not intended for production use, though similar code is running in other CCA apps.
+
+## Setup
+
+Obtain a [Web Services token](https://moodle.cca.edu/admin/webservice/tokens.php) for a Service with the appropriate API permissions, then save that token in a config.py file (see example.config.py for details) in the root of this project.
+
+This project uses `uv`. Run `uv sync` to install its dependencies.
 
 ## course_get_categories
 
