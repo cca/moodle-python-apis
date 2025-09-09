@@ -23,3 +23,7 @@ Returns _all_ the Moodle courses using the `core_course_get_courses` wsfunction.
 ## enrol_get_enrolled_users
 
 Given a course ID, returns a list of users enrolled in that course using the `core_enrol_get_enrolled_users` function.
+
+## suppressed emails
+
+This iPython Notebook shows how to check the list of suppressed email addresses in Mailgun for active accounts whose email should be reinstated.
