@@ -10,15 +10,15 @@ def get_mdl_courses():
 
     returns: a list of course objects
     """
-    url = config.url
-    params = {
+    url: str = config.url
+    params: dict[str, str] = {
         # found at https://moodle.cca.edu/admin/settings.php?section=webservicetokens
         "wstoken": config.token,
         "wsfunction": "core_course_get_courses",
         "moodlewsrestformat": "json",
     }
 
-    response = requests.get(url, params=params)
+    response: requests.Response = requests.get(url, params=params)
     data = response.json()
 
     if data and isinstance(data, list):

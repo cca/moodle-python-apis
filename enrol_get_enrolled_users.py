@@ -10,10 +10,9 @@ Options:
 """
 
 import json
-import sys
 
-from docopt import docopt
 import requests
+from docopt import docopt
 
 import config
 
@@ -22,10 +21,10 @@ import config
 # https://moodle.cca.edu/webservice/rest/server.php?wstoken=...&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json&courseid=...
 
 
-def get_enrolled_users(courseid):
+def get_enrolled_users(courseid: str):
     """print enrolled users in a course"""
-    url = config.url
-    params = {
+    url: str = config.url
+    params: dict[str, str] = {
         "courseid": courseid,
         "moodlewsrestformat": "json",
         "wsfunction": "core_enrol_get_enrolled_users",
@@ -33,7 +32,7 @@ def get_enrolled_users(courseid):
         "wstoken": config.token,
     }
 
-    response = requests.get(url, params=params)
+    response: requests.Response = requests.get(url, params=params)
     data = response.json()
 
     # pretty print full data

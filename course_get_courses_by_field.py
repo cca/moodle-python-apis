@@ -14,8 +14,8 @@ Options:
 
 import json
 
-from docopt import docopt
 import requests
+from docopt import docopt
 
 import config
 
@@ -62,7 +62,7 @@ def get_mdl_course(shortname):
     data = response.json()
     courses = data.get("courses")
 
-    if type(courses) == list:
+    if type(courses) is list:
         if len(courses) > 0:
             # theoretically this is always a single-entry array
             return courses[0]
